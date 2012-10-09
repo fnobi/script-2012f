@@ -12,12 +12,17 @@
 dictionary = { 'dog' => '犬', 'cat' => '猫' }
 
 while true
+  # 入力待ち
   print '英語：'
   x = gets.chomp
-  if dictionary[x]
-    puts "日本語：#{dictionary[x]}"
-  else
+
+  # 辞書にない言葉だったら、日本語訳を聞いて終了
+  if !dictionary[x]
     print "#{x}の日本語訳を教えてください："
     dictionary[x] = gets.chomp
+    next
   end
+
+  # 出力
+  puts "日本語：#{dictionary[x]}"
 end
