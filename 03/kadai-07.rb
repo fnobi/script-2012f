@@ -36,6 +36,7 @@ while true
   array.each_index do |index|
     if insert_to.nil? && array[index] > number
       insert_to = index
+      break
     end
   end
 
