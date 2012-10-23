@@ -20,9 +20,18 @@ class KeioStudent < Student
     '慶應義塾大学'
   end
 
+  # ここが書き足した部分
   def transfer f
+    # defの内部ではこのローカル変数fにはアクセスできない
+    # ので仕方なく、インスタンス変数を借りる
     @faculty = f
+
+    # defの中でdefを呼ぶというなんだかわけが分からない形だが、これでOK。
     def self.faculty ; @faculty end
+
+
+    # ていうか普通は、そもそもstudent.facultyを「return @fuculty」という形に
+    # してほしいものだけれど…。今回は、「なるべく変更せずに」なので仕方がない。
   end
 
 end
