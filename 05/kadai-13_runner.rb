@@ -2,14 +2,26 @@
 
 require './kadai-13'
 
-# 動作テスト
-taro = Student.new('太郎')
-taro.set_score('数学', 65)
-taro.set_score('国語', 91)
+a = Account.new
+a.deposit(3000)
 
-hanako = Student.new('花子')
-hanako.set_score('数学',80)
-hanako.set_score('国語',77)
+b = Account.new #bの口座
+b.deposit(1000) #bの口座に1000円預ける
 
-puts hanako.compare(taro, '数学')  # 花子の側から見て太郎と比較する
-puts taro.compare(hanako, '国語')  # 太郎の側から見て花子と比較する
+puts "aの預金額: #{a.balance}"
+puts "bの預金額: #{b.balance}"
+
+puts 'bの口座から500円引き出す'
+b.withdraw(500)
+
+puts 'aの口座からbの口座に2000円振り込む'
+a.transfer(b, 2000)
+
+puts "aの預金額: #{a.balance}"
+puts "bの預金額: #{b.balance}"
+
+puts 'bの口座からaの口座に5000円振り込む'
+b.transfer(a, 5000)
+
+puts "aの預金額: #{a.balance}"
+puts "bの預金額: #{b.balance}"
