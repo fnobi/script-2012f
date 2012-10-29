@@ -1,0 +1,36 @@
+fsin:script2012f-railssample fujisawashin$ rails console
+Loading development environment (Rails 3.2.1)
+1.9.2-p290 :001 > Faculty.find(:all)
+  Faculty Load (0.4ms)  SELECT "faculties".* FROM "faculties" 
+ => [#<Faculty id: 1, name: "Policy Management", created_at: "2012-10-29 22:27:16", updated_at: "2012-10-29 22:27:16">] 
+1.9.2-p290 :002 > x = Faculty.new(:name => "Environment and Information Studies")
+ => #<Faculty id: nil, name: "Environment and Information Studies", created_at: nil, updated_at: nil> 
+1.9.2-p290 :003 > x.save
+   (0.1ms)  begin transaction
+  SQL (125.4ms)  INSERT INTO "faculties" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Mon, 29 Oct 2012 22:46:19 UTC +00:00], ["name", "Environment and Information Studies"], ["updated_at", Mon, 29 Oct 2012 22:46:19 UTC +00:00]]
+   (2.4ms)  commit transaction
+ => true 
+1.9.2-p290 :004 > Faculty.find(:all)
+  Faculty Load (0.3ms)  SELECT "faculties".* FROM "faculties" 
+ => [#<Faculty id: 1, name: "Policy Management", created_at: "2012-10-29 22:27:16", updated_at: "2012-10-29 22:27:16">, #<Faculty id: 2, name: "Environment and Information Studies", created_at: "2012-10-29 22:46:19", updated_at: "2012-10-29 22:46:19">] 
+1.9.2-p290 :005 > y = Student.new(:name => "hanako", :faculty_id => 2, :grade => 1)
+ => #<Student id: nil, name: "hanako", faculty_id: 2, created_at: nil, updated_at: nil, grade: 1> 
+1.9.2-p290 :006 > y.save
+   (0.1ms)  begin transaction
+  SQL (28.3ms)  INSERT INTO "students" ("created_at", "faculty_id", "grade", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 29 Oct 2012 22:47:45 UTC +00:00], ["faculty_id", 2], ["grade", 1], ["name", "hanako"], ["updated_at", Mon, 29 Oct 2012 22:47:45 UTC +00:00]]
+   (2.4ms)  commit transaction
+ => true 
+1.9.2-p290 :007 > y = Student.new(:name => "ichiro", :faculty_id => 2, :grade => 2)
+ => #<Student id: nil, name: "ichiro", faculty_id: 2, created_at: nil, updated_at: nil, grade: 2> 
+1.9.2-p290 :008 > y.save
+   (0.1ms)  begin transaction
+  SQL (1.0ms)  INSERT INTO "students" ("created_at", "faculty_id", "grade", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 29 Oct 2012 22:48:11 UTC +00:00], ["faculty_id", 2], ["grade", 2], ["name", "ichiro"], ["updated_at", Mon, 29 Oct 2012 22:48:11 UTC +00:00]]
+   (1.7ms)  commit transaction
+ => true 
+1.9.2-p290 :009 > Student.find(:all)
+  Student Load (0.3ms)  SELECT "students".* FROM "students" 
+ => [#<Student id: 1, name: "Taro", faculty_id: 1, created_at: "2012-10-29 22:28:21", updated_at: "2012-10-29 22:28:21", grade: 1>, #<Student id: 2, name: "hanako", faculty_id: 2, created_at: "2012-10-29 22:47:45", updated_at: "2012-10-29 22:47:45", grade: 1>, #<Student id: 3, name: "ichiro", faculty_id: 2, created_at: "2012-10-29 22:48:11", updated_at: "2012-10-29 22:48:11", grade: 2>] 
+1.9.2-p290 :010 > x.student
+  Student Load (0.2ms)  SELECT "students".* FROM "students" WHERE "students"."faculty_id" = 2
+ => [#<Student id: 2, name: "hanako", faculty_id: 2, created_at: "2012-10-29 22:47:45", updated_at: "2012-10-29 22:47:45", grade: 1>, #<Student id: 3, name: "ichiro", faculty_id: 2, created_at: "2012-10-29 22:48:11", updated_at: "2012-10-29 22:48:11", grade: 2>] 
+1.9.2-p290 :011 > exit

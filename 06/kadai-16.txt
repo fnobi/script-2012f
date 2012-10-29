@@ -1,0 +1,56 @@
+fsin:script2012f-railssample fujisawashin$ rails generate scaffold Course name:string credit:integer programming:boolean
+      invoke  active_record
+      create    db/migrate/20121029223546_create_courses.rb
+      create    app/models/course.rb
+      invoke    test_unit
+      create      test/unit/course_test.rb
+      create      test/fixtures/courses.yml
+       route  resources :courses
+      invoke  scaffold_controller
+      create    app/controllers/courses_controller.rb
+      invoke    erb
+      create      app/views/courses
+      create      app/views/courses/index.html.erb
+      create      app/views/courses/edit.html.erb
+      create      app/views/courses/show.html.erb
+      create      app/views/courses/new.html.erb
+      create      app/views/courses/_form.html.erb
+      invoke    test_unit
+      create      test/functional/courses_controller_test.rb
+      invoke    helper
+      create      app/helpers/courses_helper.rb
+      invoke      test_unit
+      create        test/unit/helpers/courses_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/courses.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/courses.css.scss
+      invoke  scss
+   identical    app/assets/stylesheets/scaffolds.css.scss
+fsin:script2012f-railssample fujisawashin$ rake db:migrate
+==  CreateCourses: migrating ==================================================
+-- create_table(:courses)
+   -> 0.0189s
+==  CreateCourses: migrated (0.0190s) =========================================
+
+fsin:script2012f-railssample fujisawashin$ rails console
+Loading development environment (Rails 3.2.1)
+1.9.2-p290 :001 > x = Course.new(:name => "physical education 1", :credit => 1, :programming => false)
+ => #<Course id: nil, name: "physical education 1", credit: 1, programming: false, created_at: nil, updated_at: nil> 
+1.9.2-p290 :002 > x.save
+   (0.1ms)  begin transaction
+  SQL (401.8ms)  INSERT INTO "courses" ("created_at", "credit", "name", "programming", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 29 Oct 2012 22:37:43 UTC +00:00], ["credit", 1], ["name", "physical education 1"], ["programming", false], ["updated_at", Mon, 29 Oct 2012 22:37:43 UTC +00:00]]
+   (2.0ms)  commit transaction
+ => true 
+1.9.2-p290 :003 > y = Course.new(:name => "logical thinking by programming", :credit => 4, :programming => true)
+ => #<Course id: nil, name: "logical thinking by programming", credit: 4, programming: true, created_at: nil, updated_at: nil> 
+1.9.2-p290 :004 > y.save
+   (0.1ms)  begin transaction
+  SQL (1.2ms)  INSERT INTO "courses" ("created_at", "credit", "name", "programming", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 29 Oct 2012 22:38:37 UTC +00:00], ["credit", 4], ["name", "logical thinking by programming"], ["programming", true], ["updated_at", Mon, 29 Oct 2012 22:38:37 UTC +00:00]]
+   (6.9ms)  commit transaction
+ => true 
+1.9.2-p290 :005 > Course.find(:all)
+  Course Load (0.3ms)  SELECT "courses".* FROM "courses" 
+ => [#<Course id: 1, name: "physical education 1", credit: 1, programming: false, created_at: "2012-10-29 22:37:43", updated_at: "2012-10-29 22:37:43">, #<Course id: 2, name: "logical thinking by programming", credit: 4, programming: true, created_at: "2012-10-29 22:38:37", updated_at: "2012-10-29 22:38:37">] 
+1.9.2-p290 :006 > exit
