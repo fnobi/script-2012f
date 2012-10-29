@@ -19,4 +19,4 @@ def arraycalc (arr1, arr2)
 end
 
 # 実際に、動作テスト
-# p arraycalc([1,2,3], [4,5,6]){|x,y| x*y}
+p arraycalc([1,2,3], [4,5,6]){|x,y| x*y}
