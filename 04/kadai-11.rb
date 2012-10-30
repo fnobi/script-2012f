@@ -11,7 +11,7 @@ weights = [1, 2, 3, 10, 20]
 results = []
 
 # 分銅の全ての組み合わせを探す
-# Array.combinationは、作成する組み合わせの長さを添えて実行しなくてはいけないので、
+# Array.combinationは、作成する組み合わせの長さを渡して実行しなくてはいけないので、
 # 1-5のループを使って、それぞれの場合を試す
 (1..weights.length).each do |l|
   weights.combination(l) do |c|

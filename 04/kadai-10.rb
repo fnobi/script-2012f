@@ -12,7 +12,7 @@ path = '/pub/sfc/ipl/words'
 result = ''
 
 # ファイルの内容を1行ずつ読んで、行の内容をlineに入れて繰り返す
-open(path).each do |line|
+IO.foreach(path) do |line|
   # 末尾の改行は落としてwordに代入
   word = line.chomp
 
